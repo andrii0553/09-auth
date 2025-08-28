@@ -4,8 +4,8 @@ import css from "./NoteForm.module.css";
 import { useId } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { NewNoteData } from "../../types/note";
-import { createNote } from "@/lib/api";
+import type { NewNoteData, NoteTag } from "../../types/note";
+import { createNote } from "@/lib/api/clientApi";
 
 import { useNoteDraftStore } from "@/lib/store/noteStore";
 
@@ -17,7 +17,7 @@ export default function NoteForm() {
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    >
   ) => {
     setDraft({
       ...draft,
@@ -40,7 +40,7 @@ export default function NoteForm() {
     const values: NewNoteData = {
       title: formData.get("title") as string,
       content: (formData.get("content") as string) || "",
-      tag: formData.get("tag") as "Todo",
+      tag: formData.get("tag") as NoteTag,
     };
     mutate(values);
   };
@@ -52,7 +52,7 @@ export default function NoteForm() {
         <input
           id={`${fieldId}-title`}
           name="title"
-          defaultValue={draft?.title}
+          value={draft?.title}
           onChange={handleChange}
           type="text"
           className={css.input}
@@ -67,7 +67,7 @@ export default function NoteForm() {
         <textarea
           id={`${fieldId}-content`}
           name="content"
-          defaultValue={draft?.content}
+          value={draft?.content}
           onChange={handleChange}
           rows={8}
           className={css.textarea}

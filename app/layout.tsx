@@ -4,8 +4,9 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
-const robotoFont = Roboto({
+const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-roboto",
@@ -14,19 +15,23 @@ const robotoFont = Roboto({
 
 export const metadata: Metadata = {
   title: "NoteHub",
-  description: "An application to create, save and organize your notes",
+  description:
+    "An effective application for creating, viewing, editing and deleting personal notes",
   openGraph: {
     title: "NoteHub",
-    description: "An application to create, save and organize your notes",
-    url: "http://localhost:3000",
+    description:
+      "An effective application for creating, viewing, editing and deleting personal notes",
+    url: "http://localhost:3001/",
+    siteName: "NoteHub",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
         width: 1200,
         height: 630,
-        alt: "NoteHub preview image",
+        alt: "NoteHub — online notes manager",
       },
     ],
+    type: "article",
   },
 };
 
@@ -39,12 +44,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${robotoFont.variable}`}>
+      <body className={roboto.variable}>
         <TanStackProvider>
-          <Header />
-          {children}
-          {modal}
-          <Footer />
+          <AuthProvider>
+            <Header />
+            {children}
+            {modal}
+            <Footer />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

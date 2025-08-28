@@ -3,9 +3,20 @@ import { useState } from "react";
 import Link from "next/link";
 import css from "./TagsMenu.module.css";
 
-const tags = ["All", "Todo", "Work", "Personal", "Shopping", "Meeting"];
-
 const TagsMenu = () => {
+  const tags = [
+    "All",
+    "Todo",
+    "Work",
+    "Personal",
+    "Shopping",
+    "Meeting",
+    "Ideas",
+    "Travel",
+    "Finance",
+    "Health",
+    "Important",
+  ];
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   return (

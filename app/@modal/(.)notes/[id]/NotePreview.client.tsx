@@ -1,10 +1,11 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
-import { fetchNoteById } from "@/lib/api";
+import { useParams, useRouter } from "next/navigation";
+import { fetchNoteById } from "@/lib/api/clientApi";
 import css from "./NotePreview.module.css";
 import Modal from "@/components/Modal/Modal";
-import { useRouter } from "next/navigation";
+import Loader from "@/components/Loader/Loader";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
 const NotePreview = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,10 +20,15 @@ const NotePreview = () => {
     refetchOnMount: false,
   });
 
-  if (isLoading) return <p>Loading, please wait...</p>;
-  if (error || !note) return <p>Something went wrong.</p>;
+  if (isLoading) return <Loader />;
+  if (error || !note) return <ErrorMessage />;
+
+  const handleClose = () => {
+    router.back();
+  };
+
   return (
-    <Modal onClose={() => router.back()}>
+    <Modal onClose={handleClose}>
       <div className={css.container}>
         <div className={css.item}>
           <div className={css.header}>
@@ -31,6 +37,9 @@ const NotePreview = () => {
           <p className={css.content}>{note.content}</p>
           <p className={css.content}>{note.tag}</p>
           <p className={css.date}>{note.createdAt}</p>
+          <button className={css.button} onClick={handleClose}>
+            Close
+          </button>
         </div>
       </div>
     </Modal>

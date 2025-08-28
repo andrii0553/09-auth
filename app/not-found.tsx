@@ -1,23 +1,26 @@
 import css from "./page.module.css";
+
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Page not found — NoteHub",
+  title: "Page not found",
   description:
-    "Sorry, the page was not found. It may have been deleted or never existed.",
+    "Sorry, but the column for this request does not exist in NoteHub. Check the address or return to the main one",
   openGraph: {
-    title: "Page not found — NoteHub",
+    title: "Page not found",
     description:
-      "Sorry, the page was not found. It may have been deleted or never existed.",
-    url: "http:localhost:3000",
+      "Sorry, but the column for this request does not exist in NoteHub. Check the address or return to the main one",
+    url: "http://localhost:3001/5",
+    siteName: "NoteHub",
     images: [
       {
-        url: "https:ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
         width: 1200,
         height: 630,
-        alt: "NoteHub preview image",
+        alt: "NoteHub — online notes manager",
       },
     ],
+    type: "article",
   },
 };
 

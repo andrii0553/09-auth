@@ -39,6 +39,6 @@ export default function CreateNoteModal({
     >
       <div className={css.modal}>{children}</div>
     </div>,
-    document.body,
+    document.body
   );
 }
