@@ -37,9 +37,9 @@ const NotePreview = () => {
           <p className={css.content}>{note.content}</p>
           <p className={css.content}>{note.tag}</p>
           <p className={css.date}>{note.createdAt}</p>
-          <button className={css.button} onClick={handleClose}>
+          {/*           <button className={css.button} onClick={handleClose}>
             Close
-          </button>
+          </button> */}
         </div>
       </div>
     </Modal>
