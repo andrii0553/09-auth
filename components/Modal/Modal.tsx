@@ -13,7 +13,7 @@ const Modal = ({ children, onClose }: Props) => {
       <div className={css.modal}>
         {children}
         <button className={css.button} onClick={onClose}>
-          Back
+          {/* Back */}
         </button>
       </div>
     </div>
