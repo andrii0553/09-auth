@@ -3,14 +3,19 @@
 import css from "./Modal.module.css";
 
 type Props = {
-  onClose: () => void;
   children: React.ReactNode;
+  onClose: () => void;
 };
 
-const Modal = ({ onClose, children }: Props) => {
+const Modal = ({ children, onClose }: Props) => {
   return (
-    <div className={css.backdrop} onClick={onClose}>
-      <div className={css.modal}>{children}</div>
+    <div className={css.backdrop}>
+      <div className={css.modal}>
+        {children}
+        <button className={css.button} onClick={onClose}>
+          Back
+        </button>
+      </div>
     </div>
   );
 };
